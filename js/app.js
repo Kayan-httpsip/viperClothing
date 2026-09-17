@@ -6,35 +6,38 @@
 const products = [
   {
     id: 1,
-    name: 'Viper Oversized Tee',
+    name: 'ACHO QUE TEM ALGUEM ME VENDO',
     category: 'camisetas',
     price: 189.90,
     oldPrice: null,
     sizes: ['P', 'M', 'G', 'GG'],
     badge: 'NOVO',
     description: 'Camiseta oversized com estampa exclusiva da coleção Viper. Tecido 100% algodão penteado fio 30. Corte oversized com caimento perfeito.',
+    image: 'images/contemporanea%20anjo%201.png',
     gradient: 'linear-gradient(145deg, #1a1a1a 0%, #252525 100%)'
   },
   {
     id: 2,
-    name: 'Snake Logo Tee',
+    name: 'VIPER TRADICIONAL',
     category: 'camisetas',
     price: 159.90,
     oldPrice: 199.90,
     sizes: ['P', 'M', 'G', 'GG', 'XG'],
     badge: '-20%',
     description: 'Camiseta com logo da marca em silk screen de alta qualidade. Estilo clean e versátil para o dia a dia.',
+    image: 'images/estampa%20snake%20modelo.png',
     gradient: 'linear-gradient(145deg, #1f1f1f 0%, #2a2a2a 100%)'
   },
   {
     id: 3,
-    name: 'Viper Essential Hoodie',
+    name: 'FEITA PARA NÃO SE CURVAR',
     category: 'moletons',
     price: 329.90,
     oldPrice: null,
     sizes: ['M', 'G', 'GG', 'XG'],
     badge: 'BESTSELLER',
     description: 'Moletom essential com capuz e bolsos frontais. Fleecedupla face para máximo conforto e durabilidade.',
+    image: 'images/modelo%20de%20estampa.png',
     gradient: 'linear-gradient(145deg, #181818 0%, #222 100%)'
   },
   {
@@ -50,7 +53,7 @@ const products = [
   },
   {
     id: 5,
-    name: 'Viper Cargo Pants',
+    name: 'CARGO ',
     category: 'calcas',
     price: 299.90,
     oldPrice: null,
@@ -61,13 +64,14 @@ const products = [
   },
   {
     id: 6,
-    name: 'Underground Tee',
+    name: 'VEJA A ESTÁTUA',
     category: 'camisetas',
     price: 149.90,
     oldPrice: 189.90,
     sizes: ['P', 'M', 'G'],
     badge: '-21%',
     description: 'Camiseta com arte exclusiva inspirada em graffiti e cultura urbana. Edição limitada.',
+    image: 'images/modelo%20contemporanea%20nova1.png',
     gradient: 'linear-gradient(145deg, #1a1a1a 0%, #202020 100%)'
   },
   {
@@ -91,12 +95,60 @@ const products = [
     badge: '-17%',
     description: 'Corrente em aço inoxidável com pingente de cobra estilizado. Design exclusivo e durável.',
     gradient: 'linear-gradient(145deg, #1a1a1a 0%, #252525 100%)'
+  },
+  {
+    id: 9,
+    name: 'MORDIDA DE COBRA',
+    category: 'camisetas',
+    price: 189.90,
+    oldPrice: null,
+    sizes: ['P', 'M', 'G', 'GG'],
+    badge: 'NOVO',
+    description: 'Camiseta oversized com estampa de presas de cobra em neon. Algodão penteado fio 30 e caimento solto.',
+    image: 'images/modelo%20contemporanea4.png',
+    gradient: 'linear-gradient(145deg, #1a1a1a 0%, #242424 100%)'
+  },
+  {
+    id: 10,
+    name: 'GRAFFITI VIPER',
+    category: 'camisetas',
+    price: 169.90,
+    oldPrice: 199.90,
+    sizes: ['P', 'M', 'G', 'GG', 'XG'],
+    badge: '-15%',
+    description: 'Camiseta com arte graffiti exclusiva da Viper. Estilo urbano, tinta de alta durabilidade.',
+    image: 'images/estampa%20snake%20modelo3.png',
+    gradient: 'linear-gradient(145deg, #181818 0%, #222 100%)'
+  },
+  {
+    id: 11,
+    name: 'MEIA-NOITE VIPER',
+    category: 'camisetas',
+    price: 199.90,
+    oldPrice: null,
+    sizes: ['P', 'M', 'G'],
+    badge: null,
+    description: 'Camiseta escura com logo da marca discretamente em relevo. Corte premium para uso diário.',
+    image: 'images/meia-noite%20viper.png',
+    gradient: 'linear-gradient(145deg, #0f0f0f 0%, #1c1c1c 100%)'
   }
 ];
 
+// ---------- Safe Storage ----------
+const safeStorage = {
+  get(key) {
+    try { return localStorage.getItem(key); }
+    catch { return null; }
+  },
+  set(key, value) {
+    try { localStorage.setItem(key, value); return true; }
+    catch { return false; }
+  }
+};
+
 // ---------- State ----------
-let cart = JSON.parse(localStorage.getItem('viperCart') || '[]');
-let favorites = JSON.parse(localStorage.getItem('viperFavorites') || '[]');
+let cart = JSON.parse(safeStorage.get('viperCart') || '[]');
+let favorites = JSON.parse(safeStorage.get('viperFavorites') || '[]');
 let currentFilters = { category: 'all', size: 'all', sort: 'relevance' };
 let searchQuery = '';
 
@@ -116,28 +168,43 @@ const productModal = document.getElementById('productModal');
 const modalBody = document.getElementById('modalBody');
 const mobileMenu = document.getElementById('mobileMenu');
 const header = document.getElementById('header');
+const backToTop = document.getElementById('backToTop');
+const vipPopup = document.getElementById('vipPopup');
+const vipPopupForm = document.getElementById('vipPopupForm');
+const vipPopupFormInner = document.getElementById('vipPopupFormInner');
+const vipPopupSuccess = document.getElementById('vipPopupSuccess');
+const vipJoinBtn = document.getElementById('vipJoinBtn');
 const countDays = document.getElementById('countDays');
 const countHours = document.getElementById('countHours');
 const countMinutes = document.getElementById('countMinutes');
 const countSeconds = document.getElementById('countSeconds');
 
 // ---------- Helpers ----------
+function debounce(fn, delay) {
+  let timer;
+  return function (...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => fn.apply(this, args), delay);
+  };
+}
+
 function formatPrice(value) {
   return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 }
 
 function saveCart() {
-  localStorage.setItem('viperCart', JSON.stringify(cart));
+  safeStorage.set('viperCart', JSON.stringify(cart));
   updateCartUI();
 }
 
 function saveFavorites() {
-  localStorage.setItem('viperFavorites', JSON.stringify(favorites));
+  safeStorage.set('viperFavorites', JSON.stringify(favorites));
 }
 
-function getProductSVG(gradient) {
+function getProductImage(gradient, image) {
+  const src = image || 'images/street-waer.webp';
   return `<div class="product-img-inner" style="width:100%;height:100%;background:${gradient};display:flex;align-items:center;justify-content:center;">
-    <img src="images/street-waer.webp" alt="Streetwear" style="width:100%;height:100%;object-fit:cover;opacity:0.85;" loading="lazy" />
+    <img src="${src}" alt="Streetwear" style="width:100%;height:100%;object-fit:cover;opacity:0.85;" loading="lazy" />
   </div>`;
 }
 
@@ -175,7 +242,7 @@ function renderProducts() {
     return `
       <div class="product-card" data-id="${p.id}">
         <div class="product-img" onclick="openProductModal(${p.id})">
-          ${getProductSVG(p.gradient)}
+${getProductImage(p.gradient, p.image)}
           ${p.badge ? `<span class="product-badge">${p.badge}</span>` : ''}
           <div class="product-actions">
             <button class="product-action-btn" onclick="event.stopPropagation(); toggleFavorite(${p.id})" aria-label="Favoritar">
@@ -208,7 +275,10 @@ function renderProducts() {
 }
 
 function selectSize(btn) {
-  document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('selected'));
+  const scope = btn.closest('.product-info, .modal-sizes-grid');
+  if (scope) {
+    scope.querySelectorAll('.size-btn').forEach(b => b.classList.remove('selected'));
+  }
   btn.classList.add('selected');
 }
 
@@ -266,7 +336,7 @@ function updateCartUI() {
       if (!product) return '';
       return `
         <div class="cart-item">
-          <div class="cart-item-img">${getProductSVG(product.gradient)}</div>
+          <div class="cart-item-img">${getProductImage(product.gradient, product.image)}</div>
           <div class="cart-item-details">
             <div>
               <div class="cart-item-name">${product.name}</div>
@@ -343,7 +413,7 @@ function performSearch(query) {
   } else {
     searchResults.innerHTML = results.map(p => `
       <div class="search-result-item" onclick="closeSearch(); openProductModal(${p.id})">
-        <div class="search-result-img">${getProductSVG(p.gradient)}</div>
+        <div class="search-result-img">${getProductImage(p.gradient, p.image)}</div>
         <div class="search-result-info">
           <div class="search-result-name">${p.name}</div>
           <div class="search-result-price">${formatPrice(p.price)}</div>
@@ -362,7 +432,7 @@ function openProductModal(productId) {
 
   const isFav = favorites.includes(product.id);
   modalBody.innerHTML = `
-    <div class="modal-img">${getProductSVG(product.gradient)}</div>
+    <div class="modal-img">${getProductImage(product.gradient, product.image)}</div>
     <div class="modal-details">
       <div class="modal-category">${product.category.toUpperCase()}</div>
       <h2 class="modal-name">${product.name}</h2>
@@ -374,7 +444,7 @@ function openProductModal(productId) {
       <div class="modal-sizes">
         <div class="modal-sizes-label">TAMANHO</div>
         <div class="modal-sizes-grid">
-          ${product.sizes.map((s, i) => `<button class="size-btn ${i===0?'selected':''}" onclick="selectSize(this); this.parentElement.querySelectorAll('.size-btn').forEach(b=>b.classList.remove('selected')); this.classList.add('selected');">${s}</button>`).join('')}
+          ${product.sizes.map((s, i) => `<button class="size-btn ${i===0?'selected':''}" onclick="selectSize(this)">${s}</button>`).join('')}
         </div>
       </div>
       <button class="modal-add-btn" onclick="addToCartFromModal(${product.id}); closeProductModal();">ADICIONAR AO CARRINHO</button>
@@ -391,9 +461,15 @@ function closeProductModal() {
 
 // ---------- Countdown ----------
 function startCountdown() {
-  const target = new Date();
-  target.setDate(target.getDate() + 14);
-  target.setHours(0, 0, 0, 0);
+  let targetTs = safeStorage.get('viperCountdown');
+  if (!targetTs || isNaN(Number(targetTs)) || Number(targetTs) <= Date.now()) {
+    const t = new Date();
+    t.setDate(t.getDate() + 14);
+    t.setHours(0, 0, 0, 0);
+    targetTs = t.getTime();
+    safeStorage.set('viperCountdown', targetTs);
+  }
+  const target = new Date(Number(targetTs));
 
   function update() {
     const now = new Date();
@@ -428,7 +504,7 @@ function initScrollAnimations() {
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-  document.querySelectorAll('.category-card, .product-card, .benefit-card, .about-grid > *').forEach(el => {
+  document.querySelectorAll('.category-card, .product-card, .benefit-card, .vip-benefit, .review-card, .about-grid > *').forEach(el => {
     el.classList.add('animate-on-scroll');
     observer.observe(el);
   });
@@ -444,6 +520,8 @@ function initHeaderScroll() {
     } else {
       header.style.background = 'rgba(10, 10, 10, 0.8)';
     }
+    if (current > 400) backToTop.classList.add('show');
+    else backToTop.classList.remove('show');
     lastScroll = current;
   });
 }
@@ -453,13 +531,25 @@ function initEventListeners() {
   document.getElementById('cartToggle').addEventListener('click', openCart);
   document.getElementById('cartClose').addEventListener('click', closeCart);
   cartOverlay.addEventListener('click', closeCart);
+  document.getElementById('cartContinue').addEventListener('click', closeCart);
+  document.getElementById('cartCheckout').addEventListener('click', () => {
+    if (cart.length === 0) return;
+    const total = cart.reduce((acc, item) => {
+      const p = products.find(pr => pr.id === item.id);
+      return acc + (p ? p.price * item.quantity : 0);
+    }, 0);
+    alert(`Pedido confirmado! Total: ${formatPrice(total)}\nObrigado por comprar na Viper Clothing!`);
+    cart = [];
+    saveCart();
+    closeCart();
+  });
 
   document.getElementById('searchToggle').addEventListener('click', openSearch);
   document.getElementById('searchClose').addEventListener('click', closeSearch);
   searchOverlay.addEventListener('click', (e) => {
     if (e.target === searchOverlay) closeSearch();
   });
-  searchInput.addEventListener('input', (e) => performSearch(e.target.value));
+  searchInput.addEventListener('input', debounce((e) => performSearch(e.target.value), 300));
 
   document.getElementById('menuToggle').addEventListener('click', () => {
     mobileMenu.classList.toggle('open');
@@ -487,6 +577,8 @@ function initEventListeners() {
     e.preventDefault();
     const input = e.target.querySelector('.newsletter-input');
     if (input.value) {
+      safeStorage.set('viperVipEmail', input.value.trim().toLowerCase());
+      closeVipPopup();
       alert('Obrigado por se inscrever! Bem-vindo ao universo Viper.');
       input.value = '';
     }
@@ -515,14 +607,68 @@ function initEventListeners() {
     link.addEventListener('click', () => mobileMenu.classList.remove('open'));
   });
 
+  // Back to top
+  backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
   // Close cart on escape
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       closeCart();
       closeSearch();
       closeProductModal();
+      closeVipPopup();
     }
   });
+}
+
+// ---------- VIP Popup ----------
+function hasVipSubscribed() {
+  return !!safeStorage.get('viperVipEmail');
+}
+
+function openVipPopup() {
+  if (hasVipSubscribed()) return;
+  vipPopup.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeVipPopup() {
+  vipPopup.classList.remove('open');
+  document.body.style.overflow = '';
+  if (!hasVipSubscribed()) safeStorage.set('viperPopupDismissed', '1');
+}
+
+function showVipPopupSuccess() {
+  vipPopupForm.style.display = 'none';
+  vipPopupSuccess.classList.add('show');
+  setTimeout(closeVipPopup, 3500);
+}
+
+function initVipPopup() {
+  if (hasVipSubscribed()) return;
+
+  vipJoinBtn.addEventListener('click', openVipPopup);
+  document.getElementById('vipPopupClose').addEventListener('click', closeVipPopup);
+  vipPopup.addEventListener('click', (e) => {
+    if (e.target === vipPopup) closeVipPopup();
+  });
+
+  vipPopupFormInner.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const input = document.getElementById('vipPopupEmail');
+    if (input.value) {
+      safeStorage.set('viperVipEmail', input.value.trim().toLowerCase());
+      showVipPopupSuccess();
+    }
+  });
+
+  if (safeStorage.get('viperPopupDismissed') === '1') return;
+  setTimeout(() => {
+    if (hasVipSubscribed()) return;
+    openVipPopup();
+  }, 8000);
 }
 
 // ---------- Init ----------
@@ -533,4 +679,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollAnimations();
   initHeaderScroll();
   initEventListeners();
+  initVipPopup();
 });

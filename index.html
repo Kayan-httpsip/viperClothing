@@ -4,6 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>VIPER CLOTHING | Streetwear Premium</title>
+  <meta name="description" content="VIPER CLOTHING - Streetwear premium. Vista sua verdade! Camisetas, moletons, calças e acessórios com design exclusivo e atitude." />
+  <meta name="theme-color" content="#0a0a0a" />
+  <meta property="og:title" content="VIPER CLOTHING | Streetwear Premium" />
+  <meta property="og:description" content="Streetwear premium. Vista sua verdade! Coleção 2026 com camisetas, moletons, calças e acessórios." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" type="image/png" href="images/logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -30,9 +36,7 @@
         <a href="#inicio" class="nav-link">INÍCIO</a>
         <a href="#shop" class="nav-link">SHOP</a>
         <a href="#camisetas" class="nav-link">CAMISETAS</a>
-        <a href="#moletons" class="nav-link">MOLETONS</a>
-        <a href="#calcas" class="nav-link">CALÇAS</a>
-        <a href="#acessorios" class="nav-link">ACESSÓRIOS</a>
+        <a href="#o-veneno" class="nav-link">O VENENO</a>
       </nav>
 
       <div class="header-actions">
@@ -57,9 +61,7 @@
       <a href="#inicio" class="mobile-link">INÍCIO</a>
       <a href="#shop" class="mobile-link">SHOP</a>
       <a href="#camisetas" class="mobile-link">CAMISETAS</a>
-      <a href="#moletons" class="mobile-link">MOLETONS</a>
-      <a href="#calcas" class="mobile-link">CALÇAS</a>
-      <a href="#acessorios" class="mobile-link">ACESSÓRIOS</a>
+      <a href="#o-veneno" class="mobile-link">O VENENO</a>
     </div>
   </header>
 
@@ -100,8 +102,8 @@
         <span>Total</span>
         <span class="cart-total-value" id="cartTotal">R$ 0,00</span>
       </div>
-      <button class="btn btn-primary btn-full">FINALIZAR COMPRA</button>
-      <button class="btn btn-ghost btn-full">CONTINUAR COMPRANDO</button>
+      <button class="btn btn-primary btn-full" id="cartCheckout">FINALIZAR COMPRA</button>
+      <button class="btn btn-ghost btn-full" id="cartContinue">CONTINUAR COMPRANDO</button>
     </div>
   </aside>
 
@@ -109,7 +111,6 @@
     <!-- Hero -->
     <section class="hero" id="inicio">
       <div class="hero-bg">
-        <img src="images/fundo.home.png" alt="Fundo VIPER CLOTHING" class="hero-wallpaper" />
         <div class="hero-wallpaper-overlay"></div>
         <div class="hero-grain"></div>
         <div class="hero-gradient"></div>
@@ -128,8 +129,14 @@
       <div class="container hero-content">
         <div class="hero-badge">NOVA COLEÇÃO 2026</div>
         <h1 class="hero-title">VIPER<br>CLOTHING</h1>
-        <p class="hero-subtitle">STREETWEAR WITHOUT LIMITS</p>
-        <p class="hero-tagline">Vista sua atitude.</p>
+        <p class="hero-subtitle">VISTA SUA VERDADE!</p>
+        <p class="hero-tagline">QUAL O TAMANHO DA SUA AMBIÇÃO?
+
+Por mais venenosa que seja a sua ideia...
+
+Qual o tamanho da sua ambição?
+
+VISTA SUA VERDADE.</p>
         <a href="#shop" class="btn btn-primary btn-lg">COMPRAR AGORA</a>
       </div>
       <div class="hero-scroll">
@@ -147,7 +154,7 @@
         </div>
         <div class="categories-grid">
           <a href="#camisetas" class="category-card">
-            <div class="category-img" style="background-image: url('images/street-waer.webp');">
+            <div class="category-img" style="background-image: url('images/contemporanea\ anjo\ 1.png');">
               <div class="category-overlay">
                 <h3>CAMISETAS</h3>
                 <span class="category-cta">VER COLEÇÃO</span>
@@ -155,7 +162,7 @@
             </div>
           </a>
           <a href="#moletons" class="category-card">
-            <div class="category-img" style="background-image: url('images/street-waer.webp');">
+            <div class="category-img" style="background-image: url('images/modelo\ de\ estampa.png');">
               <div class="category-overlay">
                 <h3>MOLETONS</h3>
                 <span class="category-cta">VER COLEÇÃO</span>
@@ -234,9 +241,9 @@
         <div class="drop-card">
           <div class="drop-content">
             <div class="drop-badge">EM BREVE</div>
-            <h2 class="drop-title">NEW DROP</h2>
-            <h3 class="drop-subtitle">VENOM COLLECTION</h3>
-            <p class="drop-text">Uma nova geração está chegando.</p>
+            <h2 class="drop-title">POISON DROP</h2>
+            <h3 class="drop-subtitle">COLEÇÃO POISON</h3>
+            <p class="drop-text">Uma nova geração está por vir!</p>
             <div class="countdown" id="countdown">
               <div class="countdown-item">
                 <span class="countdown-value" id="countDays">00</span>
@@ -261,20 +268,68 @@
       </div>
     </section>
 
-    <!-- Sobre -->
-    <section class="about section bg-warm" id="sobre">
+    <!-- O VENENO -->
+    <section class="about section bg-warm" id="o-veneno">
       <div class="container">
         <div class="about-grid">
           <div class="about-text">
-            <h2 class="section-title">MAIS QUE ROUPA.<br>UMA IDENTIDADE.</h2>
-            <p class="about-desc">A Viper Clothing nasceu da cultura de rua e da vontade de transformar atitude em estilo. Cada peça representa liberdade, personalidade e autenticidade.</p>
+            <h2 class="section-title">QUAL O TAMANHO<br>DA SUA AMBIÇÃO?</h2>
+            <p class="about-desc">Por mais venenosa que seja a sua ideia...
+
+                                              qual o tamanho da sua ambição?
+
+                                      A Viper nasceu para quem não aceita se encaixar.
+
+                                        Para quem transforma pressão em combustível.
+                                         Para quem carrega suas próprias marcas.
+                                         Para quem não espera permissão para ser diferente.
+
+Feita para quem não se esconde.
+
+VISTA SUA VERDADE.</p>
             <a href="#" class="btn btn-outline">CONHECER A MARCA</a>
           </div>
           <div class="about-visual">
-            <div class="about-img" style="background-image: url('images/street-waer.webp'); background-size: cover; background-position: center;">
+            <div class="about-img" style="background-image: url('images/estampa\ snake\ modelo.png'); background-size: cover; background-position: center;">
               <div class="about-overlay"></div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIP Club -->
+    <section class="vip section bg-spray" id="vip-club">
+      <div class="container">
+        <div class="vip-card">
+          <div class="vip-badge">ACESSO ANTECIPADO</div>
+          <h2 class="section-title">VIPER VIP CLUB</h2>
+          <p class="vip-subtitle">Faça parte do círculo que lança os drops antes de todo mundo.</p>
+          <div class="vip-benefits">
+            <div class="vip-benefit">
+              <div class="vip-benefit-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+              </div>
+              <h4>DROPS EXCLUSIVOS</h4>
+              <p>Acesso antecipado aos lançamentos antes do público geral.</p>
+            </div>
+            <div class="vip-benefit">
+              <div class="vip-benefit-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 7v10"/><path d="M9 9.5c0-1.5 1.3-2.5 3-2.5s3 1 3 2.5"/><path d="M9 14.5c0 1.5 1.3 2.5 3 2.5s3-1 3-2.5"/></svg>
+              </div>
+              <h4>OFERTAS VIP</h4>
+              <p>Descontos exclusivos e frete grátis em pedidos acima de R$ 199.</p>
+            </div>
+            <div class="vip-benefit">
+              <div class="vip-benefit-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v10H4V12"/><path d="M2 7h20v5H2z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+              </div>
+              <h4>PONTOS & BENEFÍCIOS</h4>
+              <p>Acumule pontos a cada compra e troque por produtos e brindes.</p>
+            </div>
+          </div>
+          <button class="btn btn-primary btn-lg" id="vipJoinBtn">QUERO SER VIP</button>
+          <p class="vip-note">Cadastre seu e-mail e receba 10% OFF no primeiro pedido + acesso VIP aos drops.</p>
         </div>
       </div>
     </section>
@@ -309,7 +364,52 @@
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 12"/><path d="M3 5v7h7"/></svg>
             </div>
             <h4>TROCA FÁCIL</h4>
-            <p>Troca grátis em até 30 dias.</p>
+            <p>Troca grátis em até 7 dias.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reviews -->
+    <section class="reviews section bg-spray" id="avaliacoes">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">QUEM VESTE A VERDADE</h2>
+          <p class="section-subtitle">O que diz a família Viper</p>
+        </div>
+        <div class="reviews-grid">
+          <div class="review-card">
+            <div class="review-stars" aria-label="5 de 5 estrelas">★★★★★</div>
+            <p class="review-text">"O melhor tecido que já usei. O corte oversized é perfeito e a estampa continua intacta depois de várias lavagens. Virou minha peça favorita."</p>
+            <div class="review-author">
+              <span class="review-avatar">MV</span>
+              <div>
+                <strong>Marina V.</strong>
+                <span>Camiseta "Acho que tem alguém me vendo"</span>
+              </div>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars" aria-label="5 de 5 estrelas">★★★★★</div>
+            <p class="review-text">"O Venom Hoodie é absurdo. Qualidade de marca importada e o caimento é surreal. Chegou em 4 dias e o frete grátis quebrou o galho."</p>
+            <div class="review-author">
+              <span class="review-avatar">RC</span>
+              <div>
+                <strong>Rafael C.</strong>
+                <span>Venom Hoodie</span>
+              </div>
+            </div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars" aria-label="5 de 5 estrelas">★★★★★</div>
+            <p class="review-text">"Atendimento impecável, troca fácil e a peça é ainda melhor ao vivo. Já comprei a cargo e a camiseta tradicional. Virei cliente VIP com certeza."</p>
+            <div class="review-author">
+              <span class="review-avatar">LP</span>
+              <div>
+                <strong>Lucas P.</strong>
+                <span>Calça Cargo + Viper Tradicional</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -347,22 +447,22 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <div class="footer-badge">Desde 2024</div>
-          <a href="#" class="logo">
+          <div class="footer-badge">Desde 2026</div>
+          <a href="#inicio" class="logo">
             <span class="logo-icon">
               <img src="images/logo.png" alt="Viper Clothing" class="logo-img" />
             </span>
             <span class="logo-text">VIPER<span class="logo-accent">CLOTHING</span></span>
           </a>
-          <p class="footer-tagline">Streetwear premium. Atitude sem limites.</p>
+          <p class="footer-tagline">Streetwear premium. Vista sua verdade!</p>
           <div class="footer-social">
-            <a href="#" class="social-link" aria-label="Instagram">
+            <a href="https://www.instagram.com/viper.clothing6/" class="social-link" aria-label="Instagram" target="_blank" rel="noopener">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
             </a>
             <a href="#" class="social-link" aria-label="TikTok">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
             </a>
-            <a href="#" class="social-link" aria-label="WhatsApp">
+            <a href="https://wa.me/5514998867631" class="social-link" aria-label="WhatsApp" target="_blank" rel="noopener">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
             </a>
           </div>
@@ -374,6 +474,7 @@
           <a href="#moletons">Moletons</a>
           <a href="#calcas">Calças</a>
           <a href="#acessorios">Acessórios</a>
+          <a href="#o-veneno">O VENENO</a>
         </div>
         <div class="footer-links">
           <h4>ATENDIMENTO</h4>
@@ -385,11 +486,18 @@
         </div>
         <div class="footer-links">
           <h4>CONTATO</h4>
-          <a href="mailto:contato@viperclothing.com.br">contato@viperclothing.com.br</a>
-          <a href="#">WhatsApp: (11) 99999-9999</a>
+          <a href="mailto:contatoviperclothing6@gmail.com">contatoviperclothing6@gmail.com</a>
+          <a href="https://wa.me/5514998867631" target="_blank" rel="noopener">WhatsApp: (14) 99886-7631</a>
         </div>
       </div>
       <div class="footer-bottom">
+        <div class="footer-payments" aria-label="Formas de pagamento aceitas">
+          <span class="payment-badge">PIX</span>
+          <span class="payment-badge">VISA</span>
+          <span class="payment-badge">MASTER</span>
+          <span class="payment-badge">ELO</span>
+          <span class="payment-badge">BOLETO</span>
+        </div>
         <p>&copy; 2026 VIPER CLOTHING. Todos os direitos reservados.</p>
       </div>
     </div>
@@ -404,6 +512,37 @@
       <div class="modal-body" id="modalBody"></div>
     </div>
   </div>
+
+  <!-- VIP Popup -->
+  <div class="popup-overlay" id="vipPopup" role="dialog" aria-modal="true" aria-labelledby="vipPopupTitle">
+    <div class="popup">
+      <button class="popup-close" id="vipPopupClose" aria-label="Fechar">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+      <div class="popup-form" id="vipPopupForm">
+        <div class="popup-badge">BEM-VINDO AO UNIVERSO VIPER</div>
+        <h3 class="popup-title" id="vipPopupTitle">GANHE 10% OFF</h3>
+        <p class="popup-text">no seu primeiro pedido ao entrar para o VIP CLUB. Receba acesso antecipado aos drops, ofertas exclusivas e muito mais.</p>
+        <form class="popup-form-inner" id="vipPopupFormInner">
+          <input type="email" class="popup-input" id="vipPopupEmail" placeholder="Digite seu melhor e-mail" required autocomplete="email" />
+          <button type="submit" class="btn btn-primary btn-full">QUERO MEU DESCONTO</button>
+        </form>
+        <p class="popup-note">Sem spam. Cancele quando quiser.</p>
+      </div>
+      <div class="popup-success" id="vipPopupSuccess">
+        <div class="popup-success-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.801 10A10 10 0 1 1 17 3.335"/><path d="m9 11 3 3L22 4"/></svg>
+        </div>
+        <h4>VOCÊ É VIP!</h4>
+        <p>Seu cupom de 10% OFF chegará no seu e-mail.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+  </button>
 
   <script src="js/app.js"></script>
 </body>
