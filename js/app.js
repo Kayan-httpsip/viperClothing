@@ -512,18 +512,24 @@ function initScrollAnimations() {
 
 // ---------- Header Scroll ----------
 function initHeaderScroll() {
-  let lastScroll = 0;
-  window.addEventListener('scroll', () => {
-    const current = window.scrollY;
-    if (current > 50) {
-      header.style.background = 'rgba(10, 10, 10, 0.95)';
-    } else {
-      header.style.background = 'rgba(10, 10, 10, 0.8)';
-    }
-    if (current > 400) backToTop.classList.add('show');
+  let ticking = false;
+
+  function update() {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+    if (window.scrollY > 400) backToTop.classList.add('show');
     else backToTop.classList.remove('show');
-    lastScroll = current;
-  });
+  }
+
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      ticking = false;
+      update();
+    });
+  }, { passive: true });
+
+  update();
 }
 
 // ---------- Event Listeners ----------
